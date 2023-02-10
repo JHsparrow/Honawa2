@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Work+Sans:wght@800&display=swap');
+
+body { background-color: #ddc3c3;}
+
+.container {
+    max-width: 1000px;
+    background-color: white;
+    padding: 0;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 232px;
+}
+
+.text-muted { font-size: 10px;}
+
+.textmuted { color: #6c757d; font-size: 13px;}
+
+.fs-14 { font-size: 14px;}
+
+.btn.btn-primary {
+    width: 100%;
+    height: 55px;
+    border-radius: 0;
+    padding: 13px 0;
+    background-color: black;
+    border: none;
+    font-weight: 600;
+}
+
+.btn.btn-danger {
+    width: 100%;
+    height: 55px;
+    border-radius: 0;
+    padding: 13px 0;
+    border: none;
+    font-weight: 600;
+    color:white !important;
+}
+
+.btn.btn-primary:hover .fas { transform: translateX(10px); transition: transform 0.5s ease}
+.btn.btn-danger:hover .fas { transform: translateX(10px); transition: transform 0.5s ease}
+
+.ps-30 { padding-left: 30px;}
+
+.h4 {
+    font-family: 'Work Sans', sans-serif !important;
+    font-weight: 800 !important;
+}
+
+.textmuted, h5, .text-muted { font-family: 'Poppins', sans-serif;}
+
+.item__select, .form-control{padding: 3px 0 3px 10px;}
+input{
+	height: 26px !important;
+	display: inline-block !important;
+	padding: 0 !important;
+}
+
+/* 드래그 드랍 다운 이미지 */
+.content{
+    outline: 2px dashed #92b0b3 ;
+    outline-offset:-10px;  
+    text-align: center;
+    transition: all .15s ease-in-out;
+    width: 300px;
+    height: 300px;
+    background-color: gray;
+}
+
+.content img, .content video{
+    width:100%;
+    height:100%;
+    display:none;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout_main}">
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <title> Honawa1 </title>
+</head>
+<body>
+	<div layout:fragment="content">
+	
+		 <div class="hero_area bg-dark">
+		   <section class="slider_section ">
+		     <div class="swiper mySwiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img src="/images/main01.jpg" /></div>
+					<div class="swiper-slide"><img src="/images/main02.jpg" /></div>
+				</div>
+			</div>
+			<span class="mouse__icon"></span>
+			<span class="arrow"></span>
+		   </section>
+		 </div>
+		 <section class="food_section layout_padding-bottom">
+		   <div class="container">
+		     <div class="heading_container heading_center mt-5">
+		       <h2>Our Item</h2>
+		     </div>
+		
+		     <ul class="filters_menu">
+		       <li class="active" data-filter="*">All</li>
+				<li data-filter=".CPU">CPU</li>
+				<li data-filter=".RAM">RAM</li>
+				<li data-filter=".BOARD">메인보드</li>
+				<li data-filter=".VGA">그래픽</li>
+				<li data-filter=".MEMORY">저장장치</li>
+				<li data-filter=".POWER">파워</li>
+				<li data-filter=".CASE">케이스</li>
+		     </ul>
+		
+		     <div class="filters-content">
+		       <div class="row grid">
+		         <th:block th:each="item, status: ${items.getContent()}">
+		         	<div class="col-sm-6 col-lg-4 all" th:classappend="${item.itemGubun}">
+			           <div class="box">
+			             <div>
+			               <div class="img-box"><img src="/images/c01.png" alt=""></div>
+			               <div class="detail-box">
+			                 <h5>[[${item.itemName}]]</h5>
+			                 <p>[[${item.itemGubun}]]</p>
+			                 <div class="options">
+			                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${item.price}]]</h6>
+			                 	<a th:href="'/items/view/' +${item.id}" title="상세보기"><i class="fa-solid fa-right-to-bracket"></i></a>
+			                 </div>
+			               </div>
+			             </div>
+			           </div>
+			         </div>
+		         </th:block>
+				<!-- 여기까지 리스트 -->
+		       </div>
+		     </div>
+		   </div>
+		 </section>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+		<script>
+			$('.counter').counterUp({
+			    delay: 10,
+			    time: 1000
+			});
+			
+			var swiper = new Swiper(".mySwiper", {
+		      	loop:true,
+		      	speed: 3000,
+		      	autoplay: {    
+		        	delay: 5000,
+		          	disableOnInteraction: false, 
+		        },
+		    });
+		</script>
+		 
+		 <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+		 <!-- nice select -->
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+		 <!-- custom js -->
+		 <script src="/js/custom.js"></script>
+		 <!-- End Google Map -->
+	</div>
+
+</body>
+
+</html>

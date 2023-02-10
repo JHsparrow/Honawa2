@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout_main}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/item/payment.css}" rel="stylesheet">
+<script>
+		$(document).ready(function(){
+        	var errorMessage = $('#errorMsg').val();
+        	if(errorMessage != null && errorMessage != ''){
+            	alert(errorMessage);
+        	}
+    	});
+	</script>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<form role="form" method="post" enctype="multipart/form-data" th:object="${itemFormDto}">
+		<input id="errorMsg" type="hidden" th:value="${errorMessage}">
+		<input type="hidden" name="userId" id="userId" th:value="${userid}">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <div class="row m-0">
+            <div class="col-lg-7 pe-lg-5">
+                <div class="row">
+                    <div class="col-12 p-5">
+                        <p>이미지파일 드래그</p>
+						<div class="content"></div>
+                    </div>
+                    <div class="row m-0 bg-light">
+                        <div class="col-md-4 col-6 ps-30 pe-0 my-4">
+                            <p class="text-muted"><i class="fa-solid fa-ranking-star me-1"></i>티어</p>
+                            <input class="form-control col-3 text-center" type="text" id="tier" name="tier" value="3" ><span class="h5">[[${test}]]티어</span>
+                        </div>
+                        <div class="col-md-4 col-6  ps-30 my-4">
+                       		<p class="text-muted"><i class="fa-solid fa-cubes me-1"></i>구분</p>
+                            <select class="item__select form-select" name="itemGubun" aria-label="Default select example">
+								<option hidden>선택</option>
+								<option value="CPU" selected>CPU</option>
+								<option value="RAM">RAM</option>
+								<option value="BOARD">메인보드</option>
+								<option value="VGA">VGA</option>
+								<option value="MEMORY">저장장치</option>
+								<option value="POWER">파워</option>
+								<option value="CASE">케이스</option>
+							</select>
+                        </div>
+                        <div class="col-md-4 col-6 ps-30 my-4 inline-block">
+                            <p class="text-muted"><i class="fa-solid fa-bolt me-1"></i>필요전력</p>
+                            <input class="form-control col-6 text-center" name="watt" type="text" value="300" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0 ps-lg-4">
+                <div class="row m-0">
+                    <div class="col-12 px-4 mt-5">
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">상품명</p>
+                            <input class="form-control col-10 text-center" name="itemName" type="text" value="상품명" >
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">재고량</p>
+                            <input class="form-control col-2 text-center" name="stockNumber" type="text" value="10" >
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">가격</p>
+                            <input class="form-control col-4 text-center" name="price" type="text" value="10000" >
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">할인</p>
+                            <input class="form-control col-4 text-center" name="discount" type="text" placeholder="1~99" value="10" >
+                        </div>
+                        
+                    </div>
+                    <div class="col-12 px-0">
+                        
+                        <div class="row m-0">
+                            <div class="col-12  mb-4 p-0">
+                                <button class="btn btn-primary" th:formaction="@{/admin/item/new}" type="submit">등록<span class="fas fa-arrow-right ps-2"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <script src="/js/item/dragdropImage.js"></script>
+    </div>
+</body>
+</html>

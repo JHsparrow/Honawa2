@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout_item}">
+<head>
+  	<meta charset="utf-8" />
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  	<meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+ 
+  	<link rel="shortcut icon" href="/images/favicon.png" type="">
+
+  	<title> Feane </title>
+  	<script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+	<script src="/js/custom.js"></script>
+	
+</head>
+
+<body class="sub_page">
+
+	<section layout:fragment="content" class="food_section d-flex">
+		<nav id="sidebar">
+			<div class="custom-menu">
+				<button type="button" id="sidebarCollapse" class="btn btn-primary">
+         			<i class="fa fa-bars"></i>
+          			<span class="sr-only">Toggle Menu</span>
+        		</button>
+       		</div>
+			<div class="p-4 sideWrap">
+	  			<h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
+	  			<!-- 사이드바(카트목록) -->
+				<ul class="list-unstyled components mb-5">
+					<li>
+					  <span>CPU</span>
+					  <th:block th:if="${cartCpu.isEmpty()}">
+					  <div class="cpuWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato cpuName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="cpuPrice"></font></span>
+						</div>
+						<div><i onclick="delCpu()" class="fa-solid fa-xmark cart__xmark delCpu"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="cpu, status: ${cartCpu}">
+					  <div class="cpuWrap">
+						  <div class="card__list">
+						  	<span class="nato cpuName">[[${cpu.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="cpuPrice">[[${cpu.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delCpu()" th:id="${cpu.item.id}" class="fa-solid fa-xmark cart__xmark delCpu"></i></div>
+					  </div>
+					</th:block>
+					</li>
+					<li>
+					  <span>RAM</span>
+					  <th:block th:if="${cartRam.isEmpty()}">
+					  	<div class="ramWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato ramName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="ramPrice"></font></span>
+						</div>
+						<div><i onclick="delRam()" class="fa-solid fa-xmark cart__xmark delRam"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="ram, status: ${cartRam}">
+					  <div class="ramWrap">
+						  <div class="card__list">
+						  	<span class="nato ramName">[[${ram.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="ramPrice">[[${ram.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delRam()" th:id="${ram.item.id}" class="fa-solid fa-xmark cart__xmark delRam"></i></div>
+					  </div>
+					</th:block>
+					</li>
+					<li>
+					  <span>메인보드</span>
+					   <th:block th:if="${cartBoard.isEmpty()}">
+					  	<div class="boardWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato boardName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="boardPrice"></font></span>
+						</div>
+						<div><i onclick="delBoard()" class="fa-solid fa-xmark cart__xmark delBoard"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="board, status: ${cartBoard}">
+					  <div class="boardWrap">
+						  <div class="card__list">
+						  	<span class="nato boardName">[[${board.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="boardPrice">[[${board.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delBoard()" th:id="${board.item.id}" class="fa-solid fa-xmark cart__xmark delBoard"></i></div>
+					  </div>
+					</th:block>
+					</li>
+					<li>
+					  <span>그래픽</span>
+					   <th:block th:if="${cartVga.isEmpty()}">
+					  	<div class="vgaWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato vgaName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="vgaPrice"></font></span>
+						</div>
+						<div><i onclick="delVga()" class="fa-solid fa-xmark cart__xmark delVga"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="vga, status: ${cartVga}">
+					  <div class="vgaWrap">
+						  <div class="card__list">
+						  	<span class="nato vgaName">[[${vga.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="vgaPrice">[[${vga.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delVga()" th:id="${vga.item.id}" class="fa-solid fa-xmark cart__xmark delVga"></i></div>
+					  </div>
+					</th:block>
+					</li>
+					<li>
+					  <span>저장장치</span>
+					   <th:block th:if="${cartMemory.isEmpty()}">
+					  	<div class="memoryWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato memoryName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="memoryPrice"></font></span>
+						</div>
+						<div><i onclick="delMemory()" class="fa-solid fa-xmark cart__xmark delMemory"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="memory, status: ${cartMemory}">
+					  <div class="memoryWrap">
+						  <div class="card__list">
+						  	<span class="nato memoryName">[[${memory.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="memoryPrice">[[${memory.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delMemory()" th:id="${memory.item.id}" class="fa-solid fa-xmark cart__xmark delMemory"></i></div>
+					  </div>
+					</th:block>
+					</li>
+					<li>
+					  <span>파워</span>
+					   <th:block th:if="${cartPower.isEmpty()}">
+					  	<div class="powerWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato powerName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="powerPrice"></font></span>
+						</div>
+						<div><i onclick="delPower()" class="fa-solid fa-xmark cart__xmark delPower"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="power, status: ${cartPower}">
+					  <div class="powerWrap">
+						  <div class="card__list">
+						  	<span class="nato powerName">[[${power.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="powerPrice">[[${power.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delPower()" th:id="${power.item.id}" class="fa-solid fa-xmark cart__xmark delPower"></i></div>
+					  </div>
+					</th:block>
+					</li>
+					<li>
+					  <span>케이스</span>
+					   <th:block th:if="${cartCase.isEmpty()}">
+					  	<div class="caseWrap ajnone">
+					  	<div class="card__list">
+						  	<span class="nato caseName"></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="casePrice"></font></span>
+						</div>
+						<div><i onclick="delCase()" class="fa-solid fa-xmark cart__xmark delCase"></i></div>
+					  </div>
+					  </th:block>
+					  <th:block th:each="case, status: ${cartCase}">
+					  <div class="caseWrap">
+						  <div class="card__list">
+						  	<span class="nato caseName">[[${case.item.itemName}]]</span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="casePrice">[[${case.item.price}]]</font></span>
+						  </div>
+						  <div><i onclick="delCase()" th:id="${case.item.id}" class="fa-solid fa-xmark cart__xmark delCase"></i></div>
+					  </div>
+					</th:block>
+					</li>
+				</ul>
+				<!-- 사이드바(카트목록) -->
+      		</div>
+   		</nav>
+    	<div class="container layout_padding">
+     		<div class="heading_container heading_center">
+        		<h2>Our Item</h2>
+      		</div>
+
+			<ul class="filters_menu">
+				<li class="active" data-filter="*">All</li>
+				<li data-filter=".CPU">CPU</li>
+				<li data-filter=".RAM">RAM</li>
+				<li data-filter=".BOARD">메인보드</li>
+				<li data-filter=".VGA">그래픽</li>
+				<li data-filter=".MEMORY">저장장치</li>
+				<li data-filter=".POWER">파워</li>
+				<li data-filter=".CASE">케이스</li>
+			</ul>
+
+      		<div class="filters-content">
+		       <div class="row grid">
+		       	<th:block th:each="item, status: ${items.getContent()}">
+		         <div class="col-sm-6 col-lg-4 all" th:classappend="${item.itemGubun}">
+		           <div class="box">
+		             <div>
+		               <div class="img-box"><img src="/images/c01.png" alt=""></div>
+		               <div class="detail-box">
+		                 <h5>[[${item.itemName}]]</h5>
+		                 <p>[[${item.itemGubun}]] | <i class="fa-solid fa-bolt me-1"></i>[[${item.watt}]] | [[${item.tier}]] Tier</p>
+		                 <div class="options">
+		                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${item.price}]]</h6>
+		                 	<a th:href="'/items/view/' +${item.id}" title="상세보기"><i class="fa-solid fa-right-to-bracket"></i></a>
+		                 	<a type="button" th:onclick="createCart([[${item.id}]],[[${item.itemGubun}]], [[${item.itemName}]] , [[${item.price}]])"  title="장바구니"><i class="fa-solid fa-cart-shopping"></i></a>
+		                 </div>
+		               </div>
+		             </div>
+		           </div>
+		         </div>
+		         </th:block>
+		         <div class="col-sm-6 col-lg-4 all ram">
+		           <div class="box">
+		             <div>
+		               <div class="img-box"><img src="/images/r01.png" alt=""></div>
+		               <div class="detail-box">
+		                 <h5>KLLISRE RAM</h5>
+		                 <p>6티어 상급 RAM</p>
+		                 <div class="options"><h6><i class="fa-solid fa-won-sign me-2"></i>30000</h6><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></div>
+		               </div>
+		             </div>
+		           </div>
+		         </div>
+		         <div class="col-sm-6 col-lg-4 all board">
+		           <div class="box">
+		             <div>
+		               <div class="img-box"><img src="/images/mb01.png" alt=""></div>
+		               <div class="detail-box">
+		                 <h5>인텔 메인보드</h5>
+		                 <p>6티어 상급 메인보드</p>
+		                 <div class="options"><h6><i class="fa-solid fa-won-sign me-2"></i>30000</h6><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></div>
+		               </div>
+		             </div>
+		           </div>
+		         </div>
+				<!-- 여기까지 리스트 -->
+		       </div>
+		     </div>
+    	</div>
+    	<script>
+			var fullHeight = function() {
+		
+				$('.js-fullheight').css('height', $(window).height());
+				$(window).resize(function(){
+					$('.js-fullheight').css('height', $(window).height());
+				});
+		
+			};
+			fullHeight();
+		
+			$('#sidebarCollapse').on('click', function () {
+		      $('#sidebar').toggleClass('active');
+		  	});
+			
+			function createCart(itemId, gubun, itemNm, price) {
+				
+				if(gubun == 'CPU'){
+					$('.cpuName').text(itemNm);
+					$('.cpuPrice').text(price);
+					$('.delCpu').attr('id',itemId);
+					$('.cpuWrap').slideUp();
+					$('.cpuWrap').slideDown();
+					console.log(itemId);
+				} 
+				if(gubun == 'RAM'){
+					$('.ramName').text(itemNm);
+					$('.ramPrice').text(price);
+					$('.delRam').attr('id',itemId);
+					$('.ramWrap').slideUp();
+					$('.ramWrap').slideDown();
+				}
+				if(gubun == 'BORAD'){
+					$('.boardName').text(itemNm);
+					$('.boardPrice').text(price);
+					$('.delBoard').attr('id',itemId);
+					$('.boardWrap').slideUp();
+					$('.boardWrap').slideDown();
+				}
+				if(gubun == 'VGA'){
+					$('.vgaName').text(itemNm);
+					$('.vgaPrice').text(price);
+					$('.delVga').attr('id',itemId);
+					$('.vgaWrap').slideUp();
+					$('.vgaWrap').slideDown();
+				} 
+				if(gubun == 'MEMORY'){
+					$('.memoryName').text(itemNm);
+					$('.memoryPrice').text(price);
+					$('.delMemory').attr('id',itemId);
+					$('.memoryWrap').slideUp();
+					$('.memoryWrap').slideDown();
+				} 
+				if(gubun == 'POWER'){
+					$('.powerName').text(itemNm);
+					$('.powerPrice').text(price);
+					$('.delPower').attr('id',itemId);
+					$('.powerWrap').slideUp();
+					$('.powerWrap').slideDown();
+				} 
+				if(gubun == 'CASE'){
+					$('.caseName').text(itemNm);
+					$('.casePrice').text(price);
+					$('.delCase').attr('id',itemId);
+					$('.caseWrap').slideUp();
+					$('.caseWrap').slideDown();
+					
+				} 
+				
+				
+		        var token = $("meta[name='_csrf']").attr("content");
+		        var header = $("meta[name='_csrf_header']").attr("content");
+		        var url = "/carts/new";
+		        var paramData = {
+	        		itemId : itemId,
+	        		gubun : gubun,
+		        };
+
+		        var param = JSON.stringify(paramData);
+		        $.ajax({
+		            url      : url,
+		            type     : "POST",
+		            contentType : "application/json",
+		            data     : param,
+		            beforeSend : function(xhr){
+		                xhr.setRequestHeader(header, token);
+		            },
+		            dataType : "json",
+		            cache   : false,
+		            success  : function(result, status){
+		            },
+		            error : function(jqXHR, status, error){
+		                if(jqXHR.status == '401'){
+		                    alert('로그인 후 이용해주세요');
+		                    location.href='/members/login';
+		                } else{
+		                	console.log(error);
+		                }
+		            }
+		        });
+		    }
+			
+			function delCart(val){
+				var itemid = val;
+				var token = $("meta[name='_csrf']").attr("content");
+		        var header = $("meta[name='_csrf_header']").attr("content");
+		        var url = "/carts/delete/"+itemid;
+		        var paramData = {
+		        	itemid : itemid,
+		        };
+
+		        var param = JSON.stringify(paramData);
+
+		        $.ajax({
+		            url      : url,
+		            type     : "POST",
+		            contentType : "application/json",
+		            data     : param,
+		            beforeSend : function(xhr){
+		                xhr.setRequestHeader(header, token);
+		            },
+		            dataType : "json",
+		            cache   : false,
+		            success  : function(result, status){
+		            	
+		            },
+		            error : function(jqXHR, status, error){
+		                if(jqXHR.status == '401'){
+		                    alert('로그인 후 이용해주세요');
+		                }
+		            }
+		        });
+			}
+			
+			function delCpu(){
+				delCart($('.delCpu').attr('id'));
+				$('.cpuWrap').slideUp();
+			}
+			function delRam(){
+				delCart($('.delRam').attr('id'));
+				$('.ramWrap').slideUp();
+			}
+			function delBoard(){
+				delCart($('.delBoard').attr('id'));
+				$('.boardWrap').slideUp();
+			}
+			function delVga(){
+				delCart($('.delVga').attr('id'));
+				$('.vgaWrap').slideUp();
+			}
+			function delMemory(){
+				delCart($('.delMemory').attr('id'));
+				$('.memoryWrap').slideUp();
+			}
+			function delPower(){
+				delCart($('.delPower').attr('id'));
+				$('.powerWrap').slideUp();
+			}
+			function delCase(){
+				delCart($('.delCase').attr('id'));
+				$('.caseWrap').slideUp();
+			}
+			
+			$(window).scroll(function () {
+				var height = $(document).scrollTop();
+				console.log(height)
+				if(height>=116){
+					$('.sideWrap').addClass('cart_stick1');
+					$('.custom-menu').addClass('cart_stick2');
+				}
+				else if(height<116){
+					$('.sideWrap').removeClass('cart_stick1');
+					$('.custom-menu').removeClass('cart_stick2');
+				}
+				
+			}); 
+			
+	</script>
+  </section>
+</body>
+</html>

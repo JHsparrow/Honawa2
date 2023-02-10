@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="header">
+	
+		<header class="header_section" th:fragment="header">
+	      <div class="container">
+	        <nav class="navbar navbar-expand-lg custom_nav-container">
+	          <a class="navbar-brand" href="/"><span>Honawa</span></a>
+	          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class=""> </span>
+	          </button>
+	          
+	          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	            <ul class="navbar-nav  mx-auto ">
+	              <li class="nav-item active">
+	                <a class="nav-link" href="/">Home</a>
+	              </li>
+	              <li class="nav-item">
+	                <a class="nav-link" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" href="/admin/item/new">상품 등록</a>
+	                <a class="nav-link" sec:authorize="hasAnyAuthority('ROLE_SELLER')" href="/seller/item/new">상품 등록</a>
+	              </li>
+	              <li class="nav-item">
+	                <a class="nav-link" href="/items/list">데스크탑 조립</a>
+	              </li>
+	              <li class="nav-item">
+	                <a class="nav-link" href="/items/cart">조립 현황</a>
+	              </li>
+	            </ul>
+	            <div class="user_option">
+	              
+	              
+	              <form class="form-inline">
+	                
+	                <a href="/members/mypage" sec:authorize="isAuthenticated()" class="btn  my-2 my-sm-0 nav_search-btn">
+	                  <i class="fa-regular fa-user"></i>
+	                </a>
+	                <button type="button" id="srh__btn" class="btn  my-2 my-sm-0 nav_search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+	              </form>
+	              <a href="/members/login" class="order_online" sec:authorize="isAnonymous()">로그인</a>
+	              <a href="/members/logout" class="order_online" sec:authorize="isAuthenticated()">로그아웃<span th:text="${memberid}"></span></a>
+	            </div>
+	          </div>
+	        </nav>
+	      </div>
+	      <form class="mb-3" >
+		      <div class="btn__srh position-relative" >
+		      	<i class="fa-solid fa-magnifying-glass"></i>
+		      	<input type="text" />
+		      </div>
+	      </form>
+	      <script>
+	      	$('#srh__btn').click(function(){
+	      		$('.btn__srh').slideToggle();
+	      	})
+	      </script>
+	    </header>
+	</div>
+</body>
+</html>

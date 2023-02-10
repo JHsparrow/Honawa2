@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout_main}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<th:block layout:fragment="script">
+	
+</th:block>
+<link th:href="@{/css/item/payment.css}" rel="stylesheet">
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+        <div class="row m-0">
+            <div class="col-lg-7 pe-lg-5">
+                <div class="row">
+                    <div class="col-12 p-5">
+                        <img src="/images/c01.png" alt="">
+                    </div>
+                    <div class="row m-0 bg-light">
+                        <div class="col-md-4 col-6 ps-30 pe-0 my-4">
+                            <p class="text-muted"><i class="fa-solid fa-ranking-star me-1"></i>티어</p>
+                            <p class="h5">[[${item.tier}]]티어</p>
+                        </div>
+                        <div class="col-md-4 col-6  ps-30 my-4">
+                       		<p class="text-muted"><i class="fa-solid fa-cubes me-1"></i>구분</p>
+                            <p class="h5">[[${item.itemGubun}]]</p>
+                        </div>
+                        <div class="col-md-4 col-6 ps-30 my-4">
+                            <p class="text-muted"><i class="fa-solid fa-bolt me-1"></i>필요전력</p>
+                            <p class="h5">[[${item.watt}]]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0 ps-lg-4">
+                <div class="row m-0">
+                    <div class="col-12 px-4">
+                        <div class="d-flex align-items-end mt-4 mb-2">
+                            <p class="h4 m-0">[[${item.itemName}]]</p>
+                                  
+                            
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">수량</p>
+                            <p class="fs-14 fw-bold">[[${item.stockNumber}]]EA</p>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">가격</p>
+                            <p class="fs-14 fw-bold"><i class="fa-solid fa-won-sign fa-sm"></i><span class="ms-1">[[${item.price}]]</span></p>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <p class="textmuted">할인</p>
+                            <p class="fs-14 fw-bold">- <i class="fa-solid fa-won-sign fa-sm"></i><span class="ms-1">[[${item.price}/${item.discount}]]</span></p>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <p class="textmuted fw-bold">Total</p>
+                            <div class="d-flex align-text-top ">
+                                <span class="h4"><i class="fa-solid fa-won-sign fa-sm"></i><span class="ms-1">[[${item.price}-(${item.price}/${item.discount})]]</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 px-0">
+                        
+                        <div class="row m-0 justify-content-center">
+                        
+                            <div class="col-5  mb-4 p-0">
+                                <a th:href="'/items/modify/' +${item.id}" class="btn btn-primary">수정하기<span class="fas fa-arrow-right ps-2"></span></a>
+                            </div>
+                            <div class="col-4  mb-4 ms-3 p-0">
+                                <a onclick="delCheck()" class="btn btn-danger">삭제<span class="fas fa-arrow-right ps-2"></span></a>
+                                <input type="hidden" id="hidden_id" th:value="${item.id}">
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                    	function delCheck(){
+                    		var itemId = $('#hidden_id').val();
+                    		if(confirm('정말 삭제하시겠습니까?')){
+                    			location.href='/items/delete/'+itemId;
+                    		}
+                    	}
+                    	
+                    </script>
+                    <script th:inline="javascript">
+						$(document).ready(function(){
+							const message = '[[ ${message} ]]';
+							if (message != null && message != 'null' && message != '' ) {
+					            alert(message);
+				          	}
+						});
+					</script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

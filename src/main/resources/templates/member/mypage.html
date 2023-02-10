@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout_member}">
+<head>
+	<title>Login V2</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="limiter" layout:fragment="content">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form id="frm" class="login100-form validate-form" method="post" role="form" action="/members/mypage" th:object="${memberFormDto}">
+				<input type="hidden" id="role" name="role" value="ADMIN"> 
+					<a href="/members/login" class="back__login" title="로그인"><i class="fa-solid fa-arrow-right-to-bracket fa-rotate-180"></i></a>							
+					<span class="login100-form-title p-b-26">회원정보</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100 has-val text-center" type="text" id="id" name="id" th:value="${userInfo.id}">
+						<span class="focus-input100" data-placeholder="아이디"></span>
+						<p th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="fieldError__id">Incorrect Data</p>
+					</div>
+					<div class="wrap-input100 validate-input  m-b-100">
+						<input class="input100 has-val text-center" type="text" id="name" name="name" th:value="${userInfo.name}">
+						<span class="focus-input100" data-placeholder="이름"></span>
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError__name">Incorrect Data</p>
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" id="password" name="password" onchange="vaildCheck(); CheckPwd();" onclick="back_vaild('pwd')">
+						<span class="focus-input100" data-placeholder="비밀번호"></span>
+						<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError__pwd">Incorrect Data</p>
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" id="password_check" onchange="vaildCheck(); CheckPwd();" onclick="back_vaild('pwd')">
+						<span class="focus-input100" data-placeholder="비밀번호 확인"></span>
+						<span id="check_Y" class="btn btn-success focus-input101"><i class="fa-solid fa-check"></i></span>
+						<span id="check_N" class="btn btn-danger focus-input101"><i class="fa-solid fa-xmark"></i></span>
+						<p th:if="${#fields.hasErrors('passwordcheck')}" th:errors="*{passwordcheck}" class="fieldError__pwdc">Incorrect Data</p>
+					</div>
+					<input type="hidden" th:field="*{passwordcheck}">
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="button" onclick="frm_smt()" class="login100-form-btn">회원가입</button>
+						</div>
+					</div>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
