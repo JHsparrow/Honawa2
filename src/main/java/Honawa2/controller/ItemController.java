@@ -50,7 +50,7 @@ public class ItemController {
 	@GetMapping(value="/items/list")
 	public String list(Optional<Integer> page, Model model) {
 		
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 300);
 		Page<Item> items = itemService.getAdminItemPage(pageable);
 		String id = SecurityContextHolder.getContext().getAuthentication().getName();
 		
@@ -164,16 +164,7 @@ public class ItemController {
 	        return showMessageAndRedirect(message, model);
 	    }
 	 
-	 @GetMapping(value="/items/cart")
-		public String cart(Optional<Integer> page, Model model) {
-			
-			Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-			Page<Item> items = itemService.getAdminItemPage(pageable);
-			
-			model.addAttribute("items", items);
-			
-			return "item/cart";
-		}
+	
 	
 	
 	 private String showMessageAndRedirect(final MessageDto params, Model model) {

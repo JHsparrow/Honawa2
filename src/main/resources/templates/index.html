@@ -51,7 +51,7 @@
 		         	<div class="col-sm-6 col-lg-4 all" th:classappend="${item.itemGubun}">
 			           <div class="box">
 			             <div>
-			               <div class="img-box"><img src="/images/c01.png" alt=""></div>
+			               <div class="img-box"><img class="list_img" th:id="${item.itemGubun}" src="" alt=""></div>
 			               <div class="detail-box">
 			                 <h5>[[${item.itemName}]]</h5>
 			                 <p>[[${item.itemGubun}]]</p>
@@ -84,6 +84,17 @@
 		          	disableOnInteraction: false, 
 		        },
 		    });
+			$(function(){
+				$('.list_img').each(function(){
+	    	    	if($(this).attr('id')=='CPU')$(this).attr('src','/images/c01.png');
+	    	    	if($(this).attr('id')=='RAM')$(this).attr('src','/images/r01.png');
+	    	    	if($(this).attr('id')=='BOARD')$(this).attr('src','/images/mb01.png');
+	    	    	if($(this).attr('id')=='VGA')$(this).attr('src','/images/v01.png');
+	    	    	if($(this).attr('id')=='MEMORY')$(this).attr('src','/images/m01.png');
+	    	    	if($(this).attr('id')=='POWER')$(this).attr('src','/images/p01.png');
+	    	    	if($(this).attr('id')=='CASE')$(this).attr('src','/images/case01.png');
+	    	    });
+			})
 		</script>
 		 
 		 <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>

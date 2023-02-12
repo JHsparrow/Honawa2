@@ -20,67 +20,55 @@
 	<section layout:fragment="content" class="food_section layout_padding">
     	<div class="container">
      		<div class="heading_container heading_center">
-        		<h2>Our Item</h2>
+        		<h2>Cart List</h2>
       		</div>
-
-			<ul class="filters_menu">
-				<li class="active" data-filter="*">All</li>
-				<li data-filter=".CPU">CPU</li>
-				<li data-filter=".RAM">RAM</li>
-				<li data-filter=".BOARD">메인보드</li>
-				<li data-filter=".VGA">그래픽</li>
-				<li data-filter=".MEMORY">저장장치</li>
-				<li data-filter=".POWER">파워</li>
-				<li data-filter=".CASE">케이스</li>
-			</ul>
-
       		<div class="filters-content">
 		       <div class="row grid">
-		       	<th:block th:each="item, status: ${items.getContent()}">
-		         <div class="col-sm-6 col-lg-4 all" th:classappend="${item.itemGubun}">
+		       	<th:block th:each="item, status: ${items}">
+		         <div class="col-sm-6 col-lg-4 all">
 		           <div class="box">
 		             <div>
-		               <div class="img-box"><img src="/images/c01.png" alt=""></div>
+		               <div class="img-box"><img class="list_img" th:id="${item.item.itemGubun}" src="" alt=""></div>
 		               <div class="detail-box">
-		                 <h5>[[${item.itemName}]]</h5>
-		                 <p>[[${item.itemGubun}]] | <i class="fa-solid fa-bolt me-1"></i>[[${item.watt}]] | [[${item.tier}]] Tier</p>
+		                 <h5>[[${item.item.itemName}]]</h5>
+		                 <p>[[${item.item.itemGubun}]] | <i class="fa-solid fa-bolt me-1"></i><font>[[${item.item.watt}]]</font> | [[${item.item.tier}]] Tier</p>
 		                 <div class="options">
-		                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${item.price}]]</h6>
-		                 	<a th:href="'/items/view/' +${item.id}" title="상세보기"><i class="fa-solid fa-right-to-bracket"></i></a>
-		                 	<a th:href="'/items/payment/' +${item.id}" title="장바구니"><i class="fa-solid fa-cart-shopping"></i></a>
+		                 	<h6 class="test"><i class="fa-solid fa-won-sign me-2"></i>[[${item.item.price}]]</h6>
+		                 	<a href="#" onclick="delCpu()" title="상세보기"><i class="fa-regular fa-trash-can"></i></a>
 		                 </div>
 		               </div>
 		             </div>
 		           </div>
 		         </div>
 		         </th:block>
-		         <div class="col-sm-6 col-lg-4 all ram">
-		           <div class="box">
-		             <div>
-		               <div class="img-box"><img src="/images/r01.png" alt=""></div>
-		               <div class="detail-box">
-		                 <h5>KLLISRE RAM</h5>
-		                 <p>6티어 상급 RAM</p>
-		                 <div class="options"><h6><i class="fa-solid fa-won-sign me-2"></i>30000</h6><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></div>
-		               </div>
-		             </div>
-		           </div>
-		         </div>
-		         <div class="col-sm-6 col-lg-4 all board">
-		           <div class="box">
-		             <div>
-		               <div class="img-box"><img src="/images/mb01.png" alt=""></div>
-		               <div class="detail-box">
-		                 <h5>인텔 메인보드</h5>
-		                 <p>6티어 상급 메인보드</p>
-		                 <div class="options"><h6><i class="fa-solid fa-won-sign me-2"></i>30000</h6><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></div>
-		               </div>
-		             </div>
-		           </div>
-		         </div>
-				<!-- 여기까지 리스트 -->
+		       	</div>
+				<!-- 여기까지 리스트 --> 
+		       	<div class="grid row">
+		       		<div class="col-sm-6"></div>
 		       </div>
 		     </div>
+		     <script>
+		     	function doSum(){
+		    	    let sum = 0;
+		    	    $('.test').each(function(){
+		    	        if(!isNaN($(this).text())){
+		    	            sum += parseInt($(this).text());
+		    	        }
+		    	    });
+		    	    console.log(sum);
+	    		}
+		     	$(function(){
+					$('.list_img').each(function(){
+		    	    	if($(this).attr('id')=='CPU')$(this).attr('src','/images/c01.png');
+		    	    	if($(this).attr('id')=='RAM')$(this).attr('src','/images/r01.png');
+		    	    	if($(this).attr('id')=='BOARD')$(this).attr('src','/images/mb01.png');
+		    	    	if($(this).attr('id')=='VGA')$(this).attr('src','/images/v01.png');
+		    	    	if($(this).attr('id')=='MEMORY')$(this).attr('src','/images/m01.png');
+		    	    	if($(this).attr('id')=='POWER')$(this).attr('src','/images/p01.png');
+		    	    	if($(this).attr('id')=='CASE')$(this).attr('src','/images/case01.png');
+		    	    });
+				})
+		     </script>
     	</div>
   </section>
 </body>

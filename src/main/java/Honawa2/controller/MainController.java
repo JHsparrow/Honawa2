@@ -27,7 +27,7 @@ public class MainController {
 		String id = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("userid",id);
 		
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 300);
 		
 		Page<Item> items = itemService.getAdminItemPage(pageable);
 		model.addAttribute("items", items);

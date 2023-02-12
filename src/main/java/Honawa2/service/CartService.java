@@ -1,5 +1,7 @@
 package Honawa2.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
@@ -53,4 +55,9 @@ public class CartService {
 		cartRepository.delete(cart);
 	}
 	
+	public List<Cart> viewAll(String userid){
+		List<Cart> cart = cartRepository.findAllList(userid);
+		System.out.println(cart);
+		return cart;
+	}
 }

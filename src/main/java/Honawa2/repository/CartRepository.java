@@ -38,4 +38,8 @@ public interface CartRepository extends JpaRepository<Cart, Long>, ItemRepositor
 	Cart findCartItemId(@Param("gubun") String gubun, @Param("userid") String userid);
 	
 	Optional<Cart> findByItemId(Long itemId);
+	
+	@Query(value="select * from cart A inner join item B on a.item_id = b.item_id where A.user_id = ?1 order by field(item_gubun,'CPU','RAM','BOARD','VGA','MEMORY','POWER','CASE');",nativeQuery = true)
+	List<Cart> findAllList(@Param("userid") String userid);
+	
 }

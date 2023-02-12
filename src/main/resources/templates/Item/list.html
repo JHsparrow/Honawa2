@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layouts/layout_item}">
 <head>
   	<meta charset="utf-8" />
@@ -21,14 +22,14 @@
 <body class="sub_page">
 
 	<section layout:fragment="content" class="food_section d-flex">
-		<nav id="sidebar">
+		<nav sec:authorize="isAuthenticated()" id="sidebar">
 			<div class="custom-menu">
 				<button type="button" id="sidebarCollapse" class="btn btn-primary">
          			<i class="fa fa-bars"></i>
           			<span class="sr-only">Toggle Menu</span>
         		</button>
        		</div>
-			<div class="p-4 sideWrap">
+			<div class="p-4 sideWrap ">
 	  			<h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
 	  			<!-- 사이드바(카트목록) -->
 				<ul class="list-unstyled components mb-5">
@@ -205,44 +206,20 @@
 		         <div class="col-sm-6 col-lg-4 all" th:classappend="${item.itemGubun}">
 		           <div class="box">
 		             <div>
-		               <div class="img-box"><img src="/images/c01.png" alt=""></div>
+		               <div class="img-box"><img class="list_img" th:id="${item.itemGubun}" src="" alt=""></div>
 		               <div class="detail-box">
 		                 <h5>[[${item.itemName}]]</h5>
 		                 <p>[[${item.itemGubun}]] | <i class="fa-solid fa-bolt me-1"></i>[[${item.watt}]] | [[${item.tier}]] Tier</p>
 		                 <div class="options">
 		                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${item.price}]]</h6>
 		                 	<a th:href="'/items/view/' +${item.id}" title="상세보기"><i class="fa-solid fa-right-to-bracket"></i></a>
-		                 	<a type="button" th:onclick="createCart([[${item.id}]],[[${item.itemGubun}]], [[${item.itemName}]] , [[${item.price}]])"  title="장바구니"><i class="fa-solid fa-cart-shopping"></i></a>
+		                 	<a sec:authorize="isAuthenticated()" type="button" th:onclick="createCart([[${item.id}]],[[${item.itemGubun}]], [[${item.itemName}]] , [[${item.price}]])"  title="장바구니"><i class="fa-solid fa-cart-shopping"></i></a>
 		                 </div>
 		               </div>
 		             </div>
 		           </div>
 		         </div>
 		         </th:block>
-		         <div class="col-sm-6 col-lg-4 all ram">
-		           <div class="box">
-		             <div>
-		               <div class="img-box"><img src="/images/r01.png" alt=""></div>
-		               <div class="detail-box">
-		                 <h5>KLLISRE RAM</h5>
-		                 <p>6티어 상급 RAM</p>
-		                 <div class="options"><h6><i class="fa-solid fa-won-sign me-2"></i>30000</h6><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></div>
-		               </div>
-		             </div>
-		           </div>
-		         </div>
-		         <div class="col-sm-6 col-lg-4 all board">
-		           <div class="box">
-		             <div>
-		               <div class="img-box"><img src="/images/mb01.png" alt=""></div>
-		               <div class="detail-box">
-		                 <h5>인텔 메인보드</h5>
-		                 <p>6티어 상급 메인보드</p>
-		                 <div class="options"><h6><i class="fa-solid fa-won-sign me-2"></i>30000</h6><a href=""><i class="fa-solid fa-right-to-bracket"></i></a></div>
-		               </div>
-		             </div>
-		           </div>
-		         </div>
 				<!-- 여기까지 리스트 -->
 		       </div>
 		     </div>
@@ -412,7 +389,6 @@
 			
 			$(window).scroll(function () {
 				var height = $(document).scrollTop();
-				console.log(height)
 				if(height>=116){
 					$('.sideWrap').addClass('cart_stick1');
 					$('.custom-menu').addClass('cart_stick2');
@@ -423,8 +399,18 @@
 				}
 				
 			}); 
-			
-	</script>
+			$(function(){
+				$('.list_img').each(function(){
+	    	    	if($(this).attr('id')=='CPU')$(this).attr('src','/images/c01.png');
+	    	    	if($(this).attr('id')=='RAM')$(this).attr('src','/images/r01.png');
+	    	    	if($(this).attr('id')=='BOARD')$(this).attr('src','/images/mb01.png');
+	    	    	if($(this).attr('id')=='VGA')$(this).attr('src','/images/v01.png');
+	    	    	if($(this).attr('id')=='MEMORY')$(this).attr('src','/images/m01.png');
+	    	    	if($(this).attr('id')=='POWER')$(this).attr('src','/images/p01.png');
+	    	    	if($(this).attr('id')=='CASE')$(this).attr('src','/images/case01.png');
+	    	    });
+			})
+		</script>
   </section>
 </body>
 </html>
