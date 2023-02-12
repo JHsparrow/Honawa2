@@ -1,18 +1,4 @@
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
-
+@import url('https://fonts.googleapis.com/css?family=Jua:400');
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -407,6 +393,8 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 50px;
+  letter-spacing: 5px;
+  padding-right: 5px;
 }
 
 .wrap-login100-form-btn:hover .login100-form-bgbtn {
@@ -485,6 +473,9 @@ iframe {
 .alert-validate:hover:before {
   visibility: visible;
   opacity: 1;
+}
+.jua{
+	font-family: jua !important;
 }
 
 @media (max-width: 992px) {

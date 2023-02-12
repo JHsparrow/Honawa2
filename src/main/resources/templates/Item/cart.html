@@ -31,9 +31,9 @@
 		               <div class="img-box"><img class="list_img" th:id="${item.item.itemGubun}" src="" alt=""></div>
 		               <div class="detail-box">
 		                 <h5>[[${item.item.itemName}]]</h5>
-		                 <p>[[${item.item.itemGubun}]] | <i class="fa-solid fa-bolt me-1"></i><font>[[${item.item.watt}]]</font> | [[${item.item.tier}]] Tier</p>
+		                 <p><font class="gubun">[[${item.item.itemGubun}]]</font> | <i title="소모전력" class="fa-solid fa-bolt me-1"></i><font class="watt">[[${item.item.watt}]]</font> | [[${item.item.tier}]] Tier</p>
 		                 <div class="options">
-		                 	<h6 class="test"><i class="fa-solid fa-won-sign me-2"></i>[[${item.item.price}]]</h6>
+		                 	<h6 class="price"><i class="fa-solid fa-won-sign me-2"></i>[[${#numbers.formatInteger(item.item.price,0,'COMMA')}]]</h6>
 		                 	<a href="#" onclick="delCpu()" title="상세보기"><i class="fa-regular fa-trash-can"></i></a>
 		                 </div>
 		               </div>
@@ -42,11 +42,23 @@
 		         </div>
 		         </th:block>
 		       	</div>
+		       	<div class="col-sm-12 col-lg-12 p-0 all">
+		           <div class="box desc__wrap">
+		             <h3 class="">현재 조립 적합도</h3>
+		             <div class="col-sm-4 col-lg-4 de__watt">
+		             	<h3 class="text-dark p-0"><i class="fa-solid fa-bolt me-1"></i>전력적합도</h3>
+		               <p>
+		               	현재 소모 전력
+		               	</p>
+		             </div>
+		             <div class="col-sm-4 col-lg-4 de__watt">
+		               <span>123</span>
+		             </div>
+		           </div>
+		         </div>
 				<!-- 여기까지 리스트 --> 
-		       	<div class="grid row">
-		       		<div class="col-sm-6"></div>
-		       </div>
 		     </div>
+		       	
 		     <script>
 		     	function doSum(){
 		    	    let sum = 0;
@@ -67,6 +79,29 @@
 		    	    	if($(this).attr('id')=='POWER')$(this).attr('src','/images/p01.png');
 		    	    	if($(this).attr('id')=='CASE')$(this).attr('src','/images/case01.png');
 		    	    });
+					
+					$('.price').each(function(){
+		    	        if(!isNaN($(this).text())){
+		    	            //sum += parseInt($(this).text());
+		    	        }
+		    	    });
+					
+					$('.test').each(function(){
+		    	        if(!isNaN($(this).text())){
+		    	            //sum += parseInt($(this).text());
+		    	        }
+		    	    });
+					
+					$('.gubun').each(function(){
+		    	        if($(this).text()=="POWER"){
+		    	        	$(this).next().attr('title','공급전력');
+		    	        }
+		    	    });
+					
+					if($('.gubun').text()=="POWER"){
+						
+					}
+					
 				})
 		     </script>
     	</div>

@@ -38,11 +38,8 @@ public class CartService {
 			return cart.getId();
 		} else {
 			Cart cart = cartRepository.findCartItemId(cartDto.getGubun(),id);
-			System.out.println("찾는당2 : "+ cart);
 			Item item = itemRepository.findById(cartDto.getItemId()).orElseThrow(EntityNotFoundException::new);
-			System.out.println("찾는당3");
 			cart.updateItem(cartDto, item);
-			System.out.println("찾는당4 : ");
 			
 			return cart.getId();
 		}
@@ -57,7 +54,6 @@ public class CartService {
 	
 	public List<Cart> viewAll(String userid){
 		List<Cart> cart = cartRepository.findAllList(userid);
-		System.out.println(cart);
 		return cart;
 	}
 }

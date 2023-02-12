@@ -54,9 +54,9 @@
 			               <div class="img-box"><img class="list_img" th:id="${item.itemGubun}" src="" alt=""></div>
 			               <div class="detail-box">
 			                 <h5>[[${item.itemName}]]</h5>
-			                 <p>[[${item.itemGubun}]]</p>
+			                 <p><font class="gubun">[[${item.itemGubun}]]</font> | <i title="소모전력" class="fa-solid fa-bolt me-1"></i>[[${item.watt}]] | [[${item.tier}]] Tier</p>
 			                 <div class="options">
-			                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${item.price}]]</h6>
+			                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${#numbers.formatInteger(item.price,0,'COMMA')}]]</h6>
 			                 	<a th:href="'/items/view/' +${item.id}" title="상세보기"><i class="fa-solid fa-right-to-bracket"></i></a>
 			                 </div>
 			               </div>
@@ -93,6 +93,11 @@
 	    	    	if($(this).attr('id')=='MEMORY')$(this).attr('src','/images/m01.png');
 	    	    	if($(this).attr('id')=='POWER')$(this).attr('src','/images/p01.png');
 	    	    	if($(this).attr('id')=='CASE')$(this).attr('src','/images/case01.png');
+	    	    });
+				$('.gubun').each(function(){
+	    	        if($(this).text()=="POWER"){
+	    	        	$(this).next().attr('title','공급전력');
+	    	        }
 	    	    });
 			})
 		</script>

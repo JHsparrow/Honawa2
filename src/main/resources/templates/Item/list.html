@@ -30,9 +30,9 @@
         		</button>
        		</div>
 			<div class="p-4 sideWrap ">
-	  			<h1><a href="index.html" class="logo">Portfolic <span>Portfolio Agency</span></a></h1>
+	  			<h1><span href="index.html" class="logo jua">내 장바구니</span></h1>
 	  			<!-- 사이드바(카트목록) -->
-				<ul class="list-unstyled components mb-5">
+				<ul class="list-unstyled components mb-5 jua">
 					<li>
 					  <span>CPU</span>
 					  <th:block th:if="${cartCpu.isEmpty()}">
@@ -48,7 +48,7 @@
 					  <div class="cpuWrap">
 						  <div class="card__list">
 						  	<span class="nato cpuName">[[${cpu.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="cpuPrice">[[${cpu.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="cpuPrice">[[${#numbers.formatInteger(cpu.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delCpu()" th:id="${cpu.item.id}" class="fa-solid fa-xmark cart__xmark delCpu"></i></div>
 					  </div>
@@ -69,7 +69,7 @@
 					  <div class="ramWrap">
 						  <div class="card__list">
 						  	<span class="nato ramName">[[${ram.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="ramPrice">[[${ram.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="ramPrice">[[${#numbers.formatInteger(ram.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delRam()" th:id="${ram.item.id}" class="fa-solid fa-xmark cart__xmark delRam"></i></div>
 					  </div>
@@ -90,7 +90,7 @@
 					  <div class="boardWrap">
 						  <div class="card__list">
 						  	<span class="nato boardName">[[${board.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="boardPrice">[[${board.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="boardPrice">[[${#numbers.formatInteger(board.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delBoard()" th:id="${board.item.id}" class="fa-solid fa-xmark cart__xmark delBoard"></i></div>
 					  </div>
@@ -111,7 +111,7 @@
 					  <div class="vgaWrap">
 						  <div class="card__list">
 						  	<span class="nato vgaName">[[${vga.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="vgaPrice">[[${vga.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="vgaPrice">[[${#numbers.formatInteger(vga.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delVga()" th:id="${vga.item.id}" class="fa-solid fa-xmark cart__xmark delVga"></i></div>
 					  </div>
@@ -132,7 +132,7 @@
 					  <div class="memoryWrap">
 						  <div class="card__list">
 						  	<span class="nato memoryName">[[${memory.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="memoryPrice">[[${memory.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="memoryPrice">[[${#numbers.formatInteger(memory.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delMemory()" th:id="${memory.item.id}" class="fa-solid fa-xmark cart__xmark delMemory"></i></div>
 					  </div>
@@ -153,7 +153,7 @@
 					  <div class="powerWrap">
 						  <div class="card__list">
 						  	<span class="nato powerName">[[${power.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="powerPrice">[[${power.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="powerPrice">[[${#numbers.formatInteger(power.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delPower()" th:id="${power.item.id}" class="fa-solid fa-xmark cart__xmark delPower"></i></div>
 					  </div>
@@ -174,7 +174,7 @@
 					  <div class="caseWrap">
 						  <div class="card__list">
 						  	<span class="nato caseName">[[${case.item.itemName}]]</span>
-						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="casePrice">[[${case.item.price}]]</font></span>
+						  	<span class="text-end me-3 font-weight-bold "><i class="fa-solid fa-won-sign me-1"></i><font class="casePrice">[[${#numbers.formatInteger(case.item.price,0,'COMMA')}]]</font></span>
 						  </div>
 						  <div><i onclick="delCase()" th:id="${case.item.id}" class="fa-solid fa-xmark cart__xmark delCase"></i></div>
 					  </div>
@@ -209,9 +209,9 @@
 		               <div class="img-box"><img class="list_img" th:id="${item.itemGubun}" src="" alt=""></div>
 		               <div class="detail-box">
 		                 <h5>[[${item.itemName}]]</h5>
-		                 <p>[[${item.itemGubun}]] | <i class="fa-solid fa-bolt me-1"></i>[[${item.watt}]] | [[${item.tier}]] Tier</p>
+		                 <p><font class="gubun">[[${item.itemGubun}]]</font> | <i title="소모전력" class="fa-solid fa-bolt me-1"></i>[[${item.watt}]] | [[${item.tier}]] Tier</p>
 		                 <div class="options">
-		                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${item.price}]]</h6>
+		                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${#numbers.formatInteger(item.price,0,'COMMA')}]]</h6>
 		                 	<a th:href="'/items/view/' +${item.id}" title="상세보기"><i class="fa-solid fa-right-to-bracket"></i></a>
 		                 	<a sec:authorize="isAuthenticated()" type="button" th:onclick="createCart([[${item.id}]],[[${item.itemGubun}]], [[${item.itemName}]] , [[${item.price}]])"  title="장바구니"><i class="fa-solid fa-cart-shopping"></i></a>
 		                 </div>
@@ -244,6 +244,7 @@
 				if(gubun == 'CPU'){
 					$('.cpuName').text(itemNm);
 					$('.cpuPrice').text(price);
+					$('.cpuPrice').text($('.cpuPrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delCpu').attr('id',itemId);
 					$('.cpuWrap').slideUp();
 					$('.cpuWrap').slideDown();
@@ -252,6 +253,7 @@
 				if(gubun == 'RAM'){
 					$('.ramName').text(itemNm);
 					$('.ramPrice').text(price);
+					$('.ramPrice').text($('.ramPrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delRam').attr('id',itemId);
 					$('.ramWrap').slideUp();
 					$('.ramWrap').slideDown();
@@ -259,6 +261,7 @@
 				if(gubun == 'BORAD'){
 					$('.boardName').text(itemNm);
 					$('.boardPrice').text(price);
+					$('.boardPrice').text($('.boardPrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delBoard').attr('id',itemId);
 					$('.boardWrap').slideUp();
 					$('.boardWrap').slideDown();
@@ -266,6 +269,7 @@
 				if(gubun == 'VGA'){
 					$('.vgaName').text(itemNm);
 					$('.vgaPrice').text(price);
+					$('.vgaPrice').text($('.vgaPrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delVga').attr('id',itemId);
 					$('.vgaWrap').slideUp();
 					$('.vgaWrap').slideDown();
@@ -273,6 +277,7 @@
 				if(gubun == 'MEMORY'){
 					$('.memoryName').text(itemNm);
 					$('.memoryPrice').text(price);
+					$('.memoryPrice').text($('.memoryPrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delMemory').attr('id',itemId);
 					$('.memoryWrap').slideUp();
 					$('.memoryWrap').slideDown();
@@ -280,6 +285,7 @@
 				if(gubun == 'POWER'){
 					$('.powerName').text(itemNm);
 					$('.powerPrice').text(price);
+					$('.powerPrice').text($('.powerPrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delPower').attr('id',itemId);
 					$('.powerWrap').slideUp();
 					$('.powerWrap').slideDown();
@@ -287,6 +293,7 @@
 				if(gubun == 'CASE'){
 					$('.caseName').text(itemNm);
 					$('.casePrice').text(price);
+					$('.casePrice').text($('.casePrice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					$('.delCase').attr('id',itemId);
 					$('.caseWrap').slideUp();
 					$('.caseWrap').slideDown();
@@ -408,6 +415,11 @@
 	    	    	if($(this).attr('id')=='MEMORY')$(this).attr('src','/images/m01.png');
 	    	    	if($(this).attr('id')=='POWER')$(this).attr('src','/images/p01.png');
 	    	    	if($(this).attr('id')=='CASE')$(this).attr('src','/images/case01.png');
+	    	    });
+				$('.gubun').each(function(){
+	    	        if($(this).text()=="POWER"){
+	    	        	$(this).next().attr('title','공급전력');
+	    	        }
 	    	    });
 			})
 		</script>

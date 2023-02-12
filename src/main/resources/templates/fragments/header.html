@@ -17,33 +17,29 @@
 	          </button>
 	          
 	          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	            <ul class="navbar-nav  mx-auto ">
+	            <ul class="navbar-nav  mx-auto jua">
 	              <li class="nav-item active">
-	                <a class="nav-link" href="/">Home</a>
+	                <a class="nav-link jua" href="/">Home</a>
 	              </li>
 	              <li class="nav-item">
-	                <a class="nav-link" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" href="/admin/item/new">상품 등록</a>
-	                <a class="nav-link" sec:authorize="hasAnyAuthority('ROLE_SELLER')" href="/seller/item/new">상품 등록</a>
+	                <a class="nav-link jua" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" href="/admin/item/new">상품 등록</a>
+	                <a class="nav-link jua" sec:authorize="hasAnyAuthority('ROLE_SELLER')" href="/seller/item/new">상품 등록</a>
 	              </li>
 	              <li class="nav-item">
-	                <a class="nav-link" href="/items/list">데스크탑 조립</a>
+	                <a class="nav-link jua" href="/items/list">데스크탑 조립</a>
 	              </li>
 	              <li class="nav-item">
-	                <a class="nav-link" href="/carts/cart">조립 현황</a>
+	                <a class="nav-link jua" sec:authorize="isAuthenticated()" href="/carts/cart">조립 현황</a>
 	              </li>
 	            </ul>
 	            <div class="user_option">
-	              
-	              
 	              <form class="form-inline">
-	                
-	                <a href="/members/mypage" sec:authorize="isAuthenticated()" class="btn  my-2 my-sm-0 nav_search-btn">
+	                <a href="/members/mypage" title="비밀번호 변경" sec:authorize="isAuthenticated()" class="btn  my-2 my-sm-0 nav_search-btn">
 	                  <i class="fa-regular fa-user"></i>
 	                </a>
-	                <button type="button" id="srh__btn" class="btn  my-2 my-sm-0 nav_search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
 	              </form>
-	              <a href="/members/login" class="order_online" sec:authorize="isAnonymous()">로그인</a>
-	              <a href="/members/logout" class="order_online" sec:authorize="isAuthenticated()">로그아웃<span th:text="${memberid}"></span></a>
+	              <a href="/members/login" class="order_online jua" sec:authorize="isAnonymous()">로그인</a>
+	              <a href="/members/logout" class="order_online jua" sec:authorize="isAuthenticated()">로그아웃<span th:text="${memberid}"></span></a>
 	            </div>
 	          </div>
 	        </nav>

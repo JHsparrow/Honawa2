@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Jua:400');
 body {
   font-family: "Open Sans", sans-serif;
   color: #0c0c0c;
@@ -53,6 +54,7 @@ h2 {
   margin-bottom: 0;
   font-size: 2.5rem;
   font-weight: bold;
+  font-family: jua;
 }
 
 .heading_container h2 span {
@@ -157,6 +159,7 @@ a:focus {
   font-weight: bold;
   font-size: 32px;
   color: #ffffff;
+  font-family: jua;
 }
 
 .custom_nav-container {
@@ -500,6 +503,7 @@ a:focus {
   padding: 7px 25px;
   cursor: pointer;
   border-radius: 25px;
+  font-family: jua;
 }
 
 .food_section .filters_menu li.active {
@@ -544,6 +548,7 @@ a:focus {
 
 .food_section .box .detail-box {
   padding: 25px;
+  font-family: jua;
 }
 
 .food_section .box .detail-box h5 {
@@ -924,7 +929,7 @@ a:focus {
 .footer_section .footer-logo {
   font-weight: 600;
   margin-bottom: 20px;
-  font-family: 'Dancing Script', cursive;
+  font-family: jua;
 }
 
 .footer_section p {
@@ -936,6 +941,7 @@ a:focus {
 }
 
 .footer_section .footer_contact .contact_link_box {
+	font-family: jua;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1142,7 +1148,7 @@ a:focus {
     padding: 10px 0;
     display: block;
     color: rgba(255,255,255,.6);
-    
+    font-family: jua;
 }
 
 #sidebar ul li.active>a {
@@ -1257,6 +1263,37 @@ a:focus {
 	position:sticky !important;
 	top:20px !important;
 	left:250px !important;
+}
+
+.desc__wrap{
+	height: 300px;
+	background: #222831 !important ;
+	text-align: center;
+}
+
+.desc__wrap h3{
+	text-align: center;
+	font-family: jua;
+    color: white;
+    padding-top: 30px;
+}
+
+.desc__wrap .de__watt{
+	padding:20px 0;
+	background: #f1f2f3;
+	display: inline-block;
+	border-radius: 10px;
+	color: black;
+	font-family: jua;
+}
+
+.de__watt span {
+	color:black;
+	
+} 
+
+.jua{
+	font-family: jua;
 }
 
 @keyframes scrollAni {
