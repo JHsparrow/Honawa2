@@ -52,6 +52,11 @@ public class CartService {
 		cartRepository.delete(cart);
 	}
 	
+	public void deleteMyCart(Long cartId) {
+		Cart cart = cartRepository.findById(cartId).orElseThrow(EntityNotFoundException::new);
+		cartRepository.delete(cart);
+	}
+	
 	public List<Cart> viewAll(String userid){
 		List<Cart> cart = cartRepository.findAllList(userid);
 		return cart;

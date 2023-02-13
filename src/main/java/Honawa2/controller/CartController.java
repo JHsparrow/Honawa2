@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import Honawa2.DTO.CartDelDto;
 import Honawa2.DTO.CartDto;
+import Honawa2.DTO.MessageDto;
 import Honawa2.entity.Cart;
 import Honawa2.entity.Item;
 import Honawa2.service.CartService;
@@ -62,15 +63,27 @@ public class CartController {
 		return new ResponseEntity<Long>((long) 123,HttpStatus.OK);
 	}
 	
-	 @GetMapping(value="/carts/cart")
-		public String cart(Model model) {
-			
-			String id = SecurityContextHolder.getContext().getAuthentication().getName();
-			List<Cart> items = cartService.viewAll(id);
-			model.addAttribute("items", items);
-			
-			return "item/cart";
-		}
+	@GetMapping(value="/carts/cart")
+	public String cart(Model model) {
+		
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		List<Cart> items = cartService.viewAll(id);
+		model.addAttribute("items", items);
+		System.out.println(items);
+		return "item/cart";
+	}
+	
+	@GetMapping(value="/carts/delmycart/{cartId}")
+	public String DeleteMyCart(@PathVariable("cartId") Long cartId, Model model) {
+		cartService.deleteMyCart(cartId);
+		MessageDto message = new MessageDto("장바구니를 비웠습니다.", "/carts/cart");
+        return showMessageAndRedirect(message, model);
+	}
+	
+	private String showMessageAndRedirect(final MessageDto params, Model model) {
+        model.addAttribute("params", params);
+        return "common/messageRedirect";
+ }
 	
 	
 }

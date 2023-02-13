@@ -33,8 +33,9 @@
 		                 <h5>[[${item.item.itemName}]]</h5>
 		                 <p><font class="gubun">[[${item.item.itemGubun}]]</font> | <i title="소모전력" class="fa-solid fa-bolt me-1"></i><font class="watt">[[${item.item.watt}]]</font> | [[${item.item.tier}]] Tier</p>
 		                 <div class="options">
-		                 	<h6 class="price"><i class="fa-solid fa-won-sign me-2"></i>[[${#numbers.formatInteger(item.item.price,0,'COMMA')}]]</h6>
-		                 	<a href="#" onclick="delCpu()" title="상세보기"><i class="fa-regular fa-trash-can"></i></a>
+		                 	<h6><i class="fa-solid fa-won-sign me-2"></i>[[${#numbers.formatInteger(item.item.price,0,'COMMA')}]]</h6>
+		                 	<input class="price" type="hidden" th:value="${item.item.price}">
+		                 	<a href="#" th:onclick="delCpu([[${item.id}]])" title="상세보기"><i class="fa-regular fa-trash-can"></i></a>
 		                 </div>
 		               </div>
 		             </div>
@@ -43,33 +44,40 @@
 		         </th:block>
 		       	</div>
 		       	<div class="col-sm-12 col-lg-12 p-0 all">
-		           <div class="box desc__wrap">
+		           <div class="box desc__wrap row justify-content-center">
 		             <h3 class="">현재 조립 적합도</h3>
-		             <div class="col-sm-4 col-lg-4 de__watt">
+		             <div class="col-sm-4 col-lg-4 de__watt me-5">
 		             	<h3 class="text-dark p-0"><i class="fa-solid fa-bolt me-1"></i>전력적합도</h3>
-		               <p>
-		               	현재 소모 전력
-		               	</p>
+		               	<div class="d-flex">
+		               		<div class="col-sm-7 col-lg-7 justify-content-center">
+			               		<p class="my-3">현재 공급 전력 : <font id="supplyIn">850</font></p>
+			               		<p class="my-3">현재 소모 전력 : <font id="supplyOut">800</font></p>
+		               		</div>
+		               		<div class="col-sm-5 col-lg-5 watt__check">
+		               			<button id="P" class="btn btn-success px-4 py-2 wattCheck" type="button">적합</button>
+		               			<a href="" id="NP" class="btn btn-danger px-4 py-2 wattCheck" >전력부족</a>
+		               		</div>
+		               	</div>
 		             </div>
-		             <div class="col-sm-4 col-lg-4 de__watt">
-		               <span>123</span>
+		             <div class="col-sm-4 col-lg-4 de__watt ms-5">
+		               <h3 class="text-dark p-0"><i class="fa-regular fa-money-bill-1 me-1"></i>가격</h3>
+		               <p class="my-3">총가격 : <font id="totalprice">850</font>원</p>
+		               <button class="btn btn-primary px-4 py-2" type="button">구매</button>
 		             </div>
 		           </div>
 		         </div>
 				<!-- 여기까지 리스트 --> 
 		     </div>
 		       	
-		     <script>
-		     	function doSum(){
-		    	    let sum = 0;
-		    	    $('.test').each(function(){
-		    	        if(!isNaN($(this).text())){
-		    	            sum += parseInt($(this).text());
-		    	        }
-		    	    });
-		    	    console.log(sum);
-	    		}
+		     <script>	
+		     	function delCpu(cartId){
+		     		location.href='/carts/delmycart/'+cartId;
+		     	}
+		     
 		     	$(function(){
+		     		var wattSum = 0;
+		     		var SupplyWatt = 0;
+		     		var priceSum = 0;
 					$('.list_img').each(function(){
 		    	    	if($(this).attr('id')=='CPU')$(this).attr('src','/images/c01.png');
 		    	    	if($(this).attr('id')=='RAM')$(this).attr('src','/images/r01.png');
@@ -81,26 +89,24 @@
 		    	    });
 					
 					$('.price').each(function(){
-		    	        if(!isNaN($(this).text())){
-		    	            //sum += parseInt($(this).text());
-		    	        }
+	    	            priceSum += Number($(this).val());
 		    	    });
-					
-					$('.test').each(function(){
-		    	        if(!isNaN($(this).text())){
-		    	            //sum += parseInt($(this).text());
-		    	        }
-		    	    });
+					$('#totalprice').text(priceSum);
+					$('#totalprice').text($('#totalprice').text().replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 					
 					$('.gubun').each(function(){
 		    	        if($(this).text()=="POWER"){
 		    	        	$(this).next().attr('title','공급전력');
+		    	        	SupplyWatt = Number($(this).next().next().text());
+		    	        	$('#supplyIn').text(SupplyWatt);
+		    	        	
+		    	        }else{
+		    	        	wattSum += Number($(this).next().next().text());
+		    	        	$('#supplyOut').text(wattSum);
 		    	        }
 		    	    });
+					if(SupplyWatt>=wattSum)$('#P').show(); else $('#NP').show();
 					
-					if($('.gubun').text()=="POWER"){
-						
-					}
 					
 				})
 		     </script>

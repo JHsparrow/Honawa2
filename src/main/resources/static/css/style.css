@@ -1285,6 +1285,12 @@ a:focus {
 	border-radius: 10px;
 	color: black;
 	font-family: jua;
+	margin-bottom: 30px;
+}
+
+.totalPrice{
+	position: relative;
+    top: 25px;
 }
 
 .de__watt span {
@@ -1292,8 +1298,16 @@ a:focus {
 	
 } 
 
+.watt__check{
+	align-self: center;
+}
+
 .jua{
 	font-family: jua;
+}
+
+.wattCheck{
+	display:none;
 }
 
 @keyframes scrollAni {
@@ -1341,4 +1355,5 @@ a:focus {
   initial-value: 0deg;
   inherits: false;
 }
+
 

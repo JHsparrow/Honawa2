@@ -157,7 +157,7 @@ public class ItemController {
         return showMessageAndRedirect(message, model);
 	}
 	
-	 @GetMapping("/items/delete/{itemId}")
+	 @PostMapping("/items/delete/{itemId}")
 	    public String deleteOrder(@PathVariable("itemId") Long itemId, Principal principal, Model model) {
 	    	itemService.deleteOrder(itemId);
 	    	MessageDto message = new MessageDto("상품 삭제가 완료되었습니다.", "/items/list");
