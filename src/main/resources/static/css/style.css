@@ -1303,7 +1303,7 @@ a:focus {
 }
 
 .jua{
-	font-family: jua;
+	font-family: jua !important;
 }
 
 .wattCheck{

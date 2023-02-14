@@ -36,6 +36,7 @@ import Honawa2.DTO.MessageDto;
 import Honawa2.constant.ItemGubun;
 import Honawa2.entity.Item;
 import Honawa2.entity.Member;
+import Honawa2.service.CartService;
 import Honawa2.service.ItemService;
 import Honawa2.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,7 @@ public class ItemController {
 	
 	private final ItemService itemService;
 	private final MemberService memberService;
+	private final CartService cartService;
 	
 	@GetMapping(value="/items/list")
 	public String list(Optional<Integer> page, Model model) {
@@ -157,8 +159,9 @@ public class ItemController {
         return showMessageAndRedirect(message, model);
 	}
 	
-	 @PostMapping("/items/delete/{itemId}")
-	    public String deleteOrder(@PathVariable("itemId") Long itemId, Principal principal, Model model) {
+	 @GetMapping("/items/delete/{itemId}")
+	    public String deleteOrder(@PathVariable("itemId") Long itemId, Model model) {
+		 	cartService.deleteCartInItem(itemId);
 	    	itemService.deleteOrder(itemId);
 	    	MessageDto message = new MessageDto("상품 삭제가 완료되었습니다.", "/items/list");
 	        return showMessageAndRedirect(message, model);

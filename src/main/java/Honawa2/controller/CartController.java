@@ -25,6 +25,7 @@ import Honawa2.DTO.CartDto;
 import Honawa2.DTO.MessageDto;
 import Honawa2.entity.Cart;
 import Honawa2.entity.Item;
+import Honawa2.entity.Member;
 import Honawa2.service.CartService;
 import Honawa2.service.ItemService;
 import Honawa2.service.MemberService;
@@ -69,7 +70,6 @@ public class CartController {
 		String id = SecurityContextHolder.getContext().getAuthentication().getName();
 		List<Cart> items = cartService.viewAll(id);
 		model.addAttribute("items", items);
-		System.out.println(items);
 		return "item/cart";
 	}
 	
@@ -77,6 +77,14 @@ public class CartController {
 	public String DeleteMyCart(@PathVariable("cartId") Long cartId, Model model) {
 		cartService.deleteMyCart(cartId);
 		MessageDto message = new MessageDto("장바구니를 비웠습니다.", "/carts/cart");
+        return showMessageAndRedirect(message, model);
+	}
+	
+	@GetMapping(value="/carts/delAllcart")
+	public String DeleteAllMyCart(Model model) {
+		String id = SecurityContextHolder.getContext().getAuthentication().getName();
+		cartService.deleteAllCart(id);
+		MessageDto message = new MessageDto("장바구니를 모두 비웠습니다.", "/carts/cart");
         return showMessageAndRedirect(message, model);
 	}
 	

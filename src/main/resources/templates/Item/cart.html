@@ -50,8 +50,8 @@
 		             	<h3 class="text-dark p-0"><i class="fa-solid fa-bolt me-1"></i>전력적합도</h3>
 		               	<div class="d-flex">
 		               		<div class="col-sm-7 col-lg-7 justify-content-center">
-			               		<p class="my-3">현재 공급 전력 : <font id="supplyIn">850</font></p>
-			               		<p class="my-3">현재 소모 전력 : <font id="supplyOut">800</font></p>
+			               		<p class="my-3">현재 공급 전력 : <font id="supplyIn">0</font></p>
+			               		<p class="my-3">현재 소모 전력 : <font id="supplyOut">0</font></p>
 		               		</div>
 		               		<div class="col-sm-5 col-lg-5 watt__check">
 		               			<button id="P" class="btn btn-success px-4 py-2 wattCheck" type="button">적합</button>
@@ -61,8 +61,8 @@
 		             </div>
 		             <div class="col-sm-4 col-lg-4 de__watt ms-5">
 		               <h3 class="text-dark p-0"><i class="fa-regular fa-money-bill-1 me-1"></i>가격</h3>
-		               <p class="my-3">총가격 : <font id="totalprice">850</font>원</p>
-		               <button class="btn btn-primary px-4 py-2" type="button">구매</button>
+		               <p class="my-3">총 가격 : <font id="totalprice">850</font>원</p>
+		               <button class="btn btn-primary px-4 py-2" onclick="delAll()" type="button">장바구니 비우기</button>
 		             </div>
 		           </div>
 		         </div>
@@ -72,6 +72,12 @@
 		     <script>	
 		     	function delCpu(cartId){
 		     		location.href='/carts/delmycart/'+cartId;
+		     	}
+		     	
+		     	function delAll(){
+		     		if(confirm('장바구니를 비우시겠습니까?')){
+		     			location.href='/carts/delAllcart';
+		     		}
 		     	}
 		     
 		     	$(function(){
@@ -105,7 +111,7 @@
 		    	        	$('#supplyOut').text(wattSum);
 		    	        }
 		    	    });
-					if(SupplyWatt>=wattSum)$('#P').show(); else $('#NP').show();
+					if(SupplyWatt>=wattSum && SupplyWatt!=0)$('#P').show(); else $('#NP').show();
 					
 					
 				})

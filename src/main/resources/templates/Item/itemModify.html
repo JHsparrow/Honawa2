@@ -29,18 +29,16 @@
             <div class="col-lg-7 pe-lg-5">
                 <div class="row">
                     <div class="col-12 p-5">
-                        <p>이미지파일 드래그</p>
-						<div class="content"></div>
+                        <img id="mainImg" src="/images/all.jpg">
                     </div>
-                    <div class="row m-0 bg-light">
+                    <div class="row m-0 bg-light jua">
                         <div class="col-md-4 col-6 ps-30 pe-0 my-4">
                             <p class="text-muted"><i class="fa-solid fa-ranking-star me-1"></i>티어</p>
                             <input class="form-control col-3 text-center" type="text" name="tier" th:value="${itemFormDto.tier}" ><span class="h5">티어</span>
                         </div>
                         <div class="col-md-4 col-6  ps-30 my-4">
                        		<p class="text-muted"><i class="fa-solid fa-cubes me-1"></i>구분</p>
-                            <select class="item__select form-select" name="itemGubun" aria-label="Default select example">
-                            	<option>123</option>
+                            <select class="item__select form-select" id="itemGubun" name="itemGubun" aria-label="Default select example" onchange="wattChange()">
 								<option th:selected="${itemFormDto.itemGubun == T(Honawa2.constant.ItemGubun).CPU}" value="CPU">CPU</option>
 								<option th:selected="${itemFormDto.itemGubun == T(Honawa2.constant.ItemGubun).RAM}" value="RAM">RAM</option>
 								<option th:selected="${itemFormDto.itemGubun == T(Honawa2.constant.ItemGubun).BOARD}" value="BOARD">메인보드</option>
@@ -59,7 +57,7 @@
             </div>
             <div class="col-lg-5 p-0 ps-lg-4">
                 <div class="row m-0">
-                    <div class="col-12 px-4 mt-5">
+                    <div class="col-12 px-4 mt-5 jua">
                         <div class="d-flex justify-content-between mb-2">
                             <p class="textmuted">상품명</p>
                             <input class="form-control col-10 text-center" name="itemName" type="text" th:value="${itemFormDto.itemName}" >
@@ -92,8 +90,70 @@
         </div>
         </form>
         <script>
+        	$(function(){
+        		if($('#itemGubun').val()=='CPU'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/c01.png');
+        		}
+        		if($('#itemGubun').val()=='RAM'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/r01.png');
+        		}
+        		if($('#itemGubun').val()=='BOARD'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/mb01.png');
+        		}
+        		if($('#itemGubun').val()=='VGA'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/v01.png');
+        		}
+        		if($('#itemGubun').val()=='MEMORY'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/m01.png');
+        		}
+        		if($('#itemGubun').val()=='POWER'){
+        			$('#power').text('공급전력');
+        			$('#mainImg').attr('src','/images/p01.png');
+        		}
+        		if($('#itemGubun').val()=='CASE'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/case01.png');
+        		}
+        	})
+        
+        
         	function frm_smt(){
         		$('#frm').submit();
+        	}
+        	function wattChange(){
+        		if($('#itemGubun').val()=='CPU'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/c01.png');
+        		}
+        		if($('#itemGubun').val()=='RAM'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/r01.png');
+        		}
+        		if($('#itemGubun').val()=='BOARD'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/mb01.png');
+        		}
+        		if($('#itemGubun').val()=='VGA'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/v01.png');
+        		}
+        		if($('#itemGubun').val()=='MEMORY'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/m01.png');
+        		}
+        		if($('#itemGubun').val()=='POWER'){
+        			$('#power').text('공급전력');
+        			$('#mainImg').attr('src','/images/p01.png');
+        		}
+        		if($('#itemGubun').val()=='CASE'){
+        			$('#power').text('필요전력');
+        			$('#mainImg').attr('src','/images/case01.png');
+        		}
         	}
         </script>
         <script src="/js/item/dragdropImage.js"></script>

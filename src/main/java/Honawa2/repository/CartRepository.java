@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import Honawa2.entity.Cart;
+import Honawa2.entity.Member;
 
 public interface CartRepository extends JpaRepository<Cart, Long>, ItemRepositoryCustom{
 	@Query(value = "select A.user_id ,B.item_gubun from cart A inner join item B on a.item_id = b.item_id where  B.item_gubun = ?2 and A.user_id = ?1", nativeQuery = true)
@@ -38,6 +39,12 @@ public interface CartRepository extends JpaRepository<Cart, Long>, ItemRepositor
 	Cart findCartItemId(@Param("gubun") String gubun, @Param("userid") String userid);
 	
 	Optional<Cart> findByItemId(Long itemId);
+	
+	@Query(value="select * from cart A where user_id = ?1 ",nativeQuery = true)
+	List<Cart> findByUserId(@Param("userid") String userid);
+	
+	@Query(value="select * from cart A where item_id = ?1 ",nativeQuery = true)
+	List<Cart> findAllCartItemId(@Param("itemid") Long itemid);
 	
 	@Query(value="select * from cart A inner join item B on a.item_id = b.item_id where A.user_id = ?1 order by field(item_gubun,'CPU','RAM','BOARD','VGA','MEMORY','POWER','CASE');",nativeQuery = true)
 	List<Cart> findAllList(@Param("userid") String userid);
